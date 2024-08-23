@@ -11,11 +11,13 @@
 #
 
 # Anaconda & Python
+
 To run Python you need a package/environment management system called Anaconda. The full version is quite big to download so you can download a mini version with just the essential bits - called miniconda. 
 There’s lots of documentation on both Anaconda and miniconda online e.g. 
 https://docs.conda.io/en/latest/miniconda.html
 
 ### Windows Install
+
 Not ideal as you will have to copy .nc files you want to work with to your local computer. Files can be very large so it’s better to use them on one of the computing facilities e.g. arc4 or Wavechasm (skip to section below for instructions of how to set up on there)
 
 1.	Open https://www.anaconda.com/products/individual#download-section with your web browser.
@@ -26,12 +28,13 @@ Not ideal as you will have to copy .nc files you want to work with to your local
 6.	Install relevant packages (listed in the conda packages section below) by following the instructions listed
 7.	In the Anaconda Prompt window, type `Jupyter notebook -- generate config` to create a config file in C:\Users\<your_username>\.jupyter 
 8.	Open the file (called jupyter_notebook_config.py) using a text editor (N.B. can do this in the Windows system file explorer)
-9. Search for the line: `# c.NotebookApp.browser = ‘’` and change it to: `c.NotebookApp.browser = 'C:/"Program Files (x86)"/Google/Chrome/Application/Chrome.exe %s'` to change the default browser from internet explorer to Chrome
+9.	Search for the line: `# c.NotebookApp.browser = ‘’` and change it to: `c.NotebookApp.browser = 'C:/"Program Files (x86)"/Google/Chrome/Application/Chrome.exe %s'` to change the default browser from internet explorer to Chrome
 10.	Create a ‘home’ directory somewhere in your C drive user folder (e.g. C:/Users/<your_username>/) where you want your new Jupyter notebooks to be located. Name this anything you like though don’t make it too long.
-11. In your jupyter_notebook_config.py file, search for the line: `# c.NotebookApp.notebook_dir = ‘'` and change it to: `c.NotebookApp.notebook_dir = 'C:/Users/<your_username>/Jupyter_Notebooks'` to change your Jupyter Notebook home directory to your new/chosen folder
-12. To open Jupyter Notebooks `jupyter-notebook'
+11.	In your jupyter_notebook_config.py file, search for the line: `# c.NotebookApp.notebook_dir = ‘'` and change it to: `c.NotebookApp.notebook_dir = 'C:/Users/<your_username>/Jupyter_Notebooks'` to change your Jupyter Notebook home directory to your new/chosen folder
+12.	To open Jupyter Notebooks `jupyter-notebook'
 
 ### Install on Arc or Wavechasm
+
 First you will need terminal software such as Mobaxterm. To install, follow the instructions here on the video titled ‘Getting MobaXTerm and connecting to ARC’. 
 This covers the install process and then logging into arc (which would be an equivalent process for Wavechasm or any other workstation).
 
@@ -48,6 +51,7 @@ Install miniconda in your home directory using the following commands:
 
 
 ### Creating a New Environment
+
 To manage different sets of packages for different projects or purposes, Anaconda allows you to create isolated environments. 
 These environments ensure that packages installed in one environment do not affect others. 
 
@@ -65,6 +69,7 @@ Your terminal should now show the active environment name (myenv).
 
 
 ### Installing Conda Packages
+
 If you have installed your own version of conda, you will need to install certain packages before you can use them. Below are some common packages containing useful functions etc. 
 There are way more than this available and the list is not at all comprehensive, but should be a good starting point. You can find out more info about functions contained within each package by googling.
 
@@ -74,34 +79,44 @@ Then use ```Conda install [package_name]``` to install relevant packages e.g.
 
 -	jupyterlab
 -	netcdf4
-- xarray
+-	xarray
 -	numpy
 -	pandas
 -	matplotlib
-- cartopy
+-	cartopy
 -	cftime
 -	nc-time-axis
-      -	For this package, the command above didn’t work for me for some reason but you can use the following instead: `conda install -c conda-forge nc-time-axis` or `pip install nc-time-axis`
-datetime
+  -	For this package, the command above didn’t work for me for some reason but you can use the following instead: `conda install -c conda-forge nc-time-axis` or `pip install nc-time-axis`
+    datetime
 -	geos
 -	dask
 -	
 
 Now you’re ready to open a notebook and get started!
 
+### Open Jupyter lab on arc4
 
+**Window 1(your terminal on arc4)**
 
-
-### Open jupyter lab on arc4:
-
-**Window 1**
-
-jupyter lab --no-browser --port=1112 &
+`jupyter lab --no-browser --port=1112 &`
 
 Note you can choose any 4digit number for the port
 
-**Window 2**
+**Window 2(the local terminal in your PC)**
 
-ssh -L 1112:localhost:1112 [username]@arc4.leeds.ac.uk
+`ssh -L 1112:localhost:1112 [username]@arc4.leeds.ac.uk`
 
 Next, open the link that popped up in the first window in your browser
+
+### Close the Jupyter lab Server
+
+If you want to close the Jupyter lab server. You can press `Crtl+C` on you keyboard to back to the terminal state(on arc4). Then you use the command `fg` to see the Jupyter server that is running. Press `Crtl+C` again and it will interrupted. The terminal will let you to choose `y/n` to close it. Press `y` and then it will be closed.
+
+### Additional Notes
+
+For the next time you want to access the Jupyter lab Server. You are required to go to the file path of your code or the father/ancestor file path of your code. Then:
+
+`conda activate [environment_name]`
+
+Skip the **Installing Conda Packages** section and follow the **Open Jupyter lab on arc4** section.
+
